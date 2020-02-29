@@ -20,12 +20,12 @@ for (l in 1:L) {
   X = matrix(data, N, p) %*% pracma::sqrtm(Sigma)$B
   X_bar = colMeans(X)
   
-  #find the full-sample covariance matrix of beta_hat
+  #find the full-sample T^2 statistics
   Sigma_h = t(X) %*% X / N
   iSigma_h = solve(Sigma_h)
   T2 = (N-1) * t(X_bar) %*% iSigma_h %*% X_bar
 
-  #find the distributed covariance matrix of beta_hat
+  #find the distributed-sample T^2 statistics
   K = floor(N/(p+1))
   dist_iSigma_h = list()
   dist_T2 = rep(0, length = K)
